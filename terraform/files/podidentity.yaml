@@ -1,0 +1,10 @@
+apiVersion: eks.services.k8s.aws/v1alpha1
+kind: PodIdentityAssociation
+metadata:
+  name: test-pia
+  namespace: test
+spec:
+  clusterName: cluster-name
+  namespace: test
+  serviceAccount: sa
+  roleARN: role-arn
