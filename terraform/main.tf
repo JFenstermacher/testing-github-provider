@@ -12,13 +12,10 @@ provider "github" {
 }
 
 locals {
-  manifest_files = fileset("${path.module}/files", "**")
+  dir            = "${path.module}/files"
+  manifest_files = fileset(local.dir, "**")
 
-  manifests = { for f in local.manifest_files: f => file(f) }
-}
-
-output "manifest_files" {
-  value = local.manifest_files
+  manifests = { for f in local.manifest_files: f => file("${local.dir}/${f}") }
 }
 
 resource "github_repository_file" "manifest" {
@@ -27,7 +24,7 @@ resource "github_repository_file" "manifest" {
   repository = "testing-github-provider"
   branch     = "argocd"
   file       = each.key
-  content    = each.value
+  content    = "kubernetes/${each.value}"
 
   commit_message = "ci: automated commit"
   commit_author  = "terraform-automated"
