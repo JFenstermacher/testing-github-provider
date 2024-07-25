@@ -1,0 +1,14 @@
+name: on release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  testing-env:
+    runs-on: ubuntu-latest
+    environment: argocd
+    steps:
+      - name: test
+        run: echo "testing"
