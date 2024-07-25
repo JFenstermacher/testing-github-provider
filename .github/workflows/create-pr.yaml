@@ -1,0 +1,26 @@
+name: test creating PR
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+job:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create file
+        run: |
+          mkdir runs
+          touch runs/${{ github.sha }}
+
+      - name: create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Automated commit"
+          branch: testing-pr-creation
+          base: argocd
