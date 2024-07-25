@@ -17,16 +17,3 @@ locals {
 
   manifests = { for f in local.manifest_files: f => file("${local.dir}/${f}") }
 }
-
-resource "github_repository_file" "manifest" {
-  for_each   = local.manifests
-
-  repository = "testing-github-provider"
-  branch     = "argocd"
-  file       = each.key
-  content    = "kubernetes/${each.value}"
-
-  commit_message = "ci: automated commit"
-  commit_author  = "terraform-automated"
-  commit_email   = ""
-}
