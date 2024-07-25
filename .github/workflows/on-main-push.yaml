@@ -1,4 +1,4 @@
-name: test creating PR
+name: on main push
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
   pull-requests: write
 
-job:
+jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
