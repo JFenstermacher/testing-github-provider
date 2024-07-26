@@ -39,4 +39,5 @@ jobs:
       - name: approve pr
         uses: juliangruber/approve-pull-request-action@v2
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ needs.create-pr.outputs.pr-number }}
