@@ -13,38 +13,4 @@ jobs:
   oven-bun:
     runs-on: ubuntu-latest
     steps:
-      - uses: oven-sh/setup-bun@v2
-      - uses: oven-sh/setup-bun@v2
-#   create-pr:
-#     runs-on: ubuntu-latest
-#     outputs:
-#       pr-number: ${{ steps.create-pr.outputs.pull-request-number }}
-#     steps:
-#       - name: checkout
-#         uses: actions/checkout@v4
-#
-#       - name: create file
-#         run: |
-#           mkdir runs
-#           touch runs/${{ github.sha }}
-#
-#       - name: create pull request
-#         id: create-pr
-#         uses: peter-evans/create-pull-request@v6
-#         with:
-#           commit-message: "Automated commit"
-#           branch: testing-pr-creation
-#           base: argocd
-#
-#   approve-pr:
-#     runs-on: ubuntu-latest
-#     environment: test
-#     needs: [create-pr]
-#     steps:
-#       - name: approve pr
-#         uses: juliangruber/approve-pull-request-action@v2
-#         with:
-#           github-token: ${{ secrets.GITHUB_TOKEN }}
-#           number: ${{ needs.create-pr.outputs.pr-number }}
-#
-# # comment
+      - uses: ./.github/actions/dockertest

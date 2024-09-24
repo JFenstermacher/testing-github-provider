@@ -1,0 +1,6 @@
+name: test docker action
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - pwd
